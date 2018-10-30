@@ -1,9 +1,0 @@
-[submodule "RT-Contracts"]
-	path = RT-Contracts
-	url = git@github.com:cspath1/RT-Contracts.git
-[submodule "YCP-RT-ControlRoom"]
-	path = YCP-RT-ControlRoom
-	url = git@github.com:jporter7/YCP-RT-ControlRoom.git
-[submodule "Radio-Tele-Frontend"]
-	path = Radio-Tele-Frontend
-	url = git@github.com:SquilliamWallace/Radio-Tele-Frontend.git

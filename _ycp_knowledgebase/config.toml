@@ -1,0 +1,8 @@
+baseURL = "/YCP-Radio-Telescope"
+languageCode = "en-us"
+title = "YCP Radio Telescope Knowledge Base"
+theme = "hugo-theme-learn"
+publishDir = "../"
+
+[params]
+  themeVariant = "blue"
