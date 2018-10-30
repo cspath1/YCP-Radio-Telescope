@@ -1,4 +1,4 @@
-baseURL = "/YCP-Radio-Telescope/"
+baseURL = "/"
 languageCode = "en-us"
 title = "YCP Radio Telescope Knowledge Base"
 theme = "hugo-theme-learn"
