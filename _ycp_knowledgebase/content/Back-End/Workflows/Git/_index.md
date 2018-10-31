@@ -4,6 +4,7 @@ title: "Git"
 
 {{% notice info %}}
 **AT ALL COSTS, AVOID PUSHING CODE THAT WILL FAIL TO BUILD!**
+{{% /notice %}}
 
 For the Radio Telescope Contracts project, this means that before you push any changes to remote,
 you should run the `gradle verify` task; this is essentially an alias for 
