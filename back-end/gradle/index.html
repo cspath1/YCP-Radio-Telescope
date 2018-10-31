@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/YCP-Radio-Telescope/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/YCP-Radio-Telescope/images/favicon.png" type="image/x-icon" />
-    <title>Categories :: YCP Radio Telescope Knowledge Base</title>
+    <title>Gradle Build System :: YCP Radio Telescope Knowledge Base</title>
 
     
     <link href="/YCP-Radio-Telescope/css/nucleus.css?1540946180" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/YCP-Radio-Telescope/categories/">
+  <body class="" data-url="/YCP-Radio-Telescope/back-end/gradle/">
     <nav id="sidebar" class="">
 
 
@@ -75,8 +75,8 @@
   
     
     <li data-nav-id="/YCP-Radio-Telescope/back-end/" title="Back-Ends" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="/YCP-Radio-Telescope/back-end/">
@@ -239,8 +239,8 @@
   
     
     <li data-nav-id="/YCP-Radio-Telescope/back-end/gradle/" title="Gradle Build System" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/YCP-Radio-Telescope/back-end/gradle/">
@@ -366,7 +366,19 @@
                     
           
           
-            Categories
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/YCP-Radio-Telescope/'>YCP Radio Telescope Knowledge Base</a> > <a href='/YCP-Radio-Telescope/back-end/'>Back-Ends</a> > Gradle Build System
+          
+         
+          
+         
           
            
                   </span>
@@ -374,7 +386,18 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#gradle-tasks">Gradle Tasks</a>
+<ul>
+<li><a href="#gradle-verify">Gradle Verify</a></li>
+<li><a href="#gradle-dokka">Gradle Dokka</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -386,12 +409,39 @@
         
         <div id="body-inner">
           
-            <h1>Categories</h1>
+            <h1>Gradle Build System</h1>
           
 
         
 
 
+
+
+<p>The back-end of the Radio Telescope uses the Spring Framework, and builds are being managed using the Gradle build
+system. The build script has several Gradle tasks set up to streamline the develop -&gt; test -&gt; publish workflow.</p>
+
+<h2 id="gradle-tasks">Gradle Tasks</h2>
+
+<p>The syntax for running a Gradle task from command line is as follows:</p>
+
+<pre><code class="language-bash">gradle taskName # run a single task
+gradle task1 task2 task3 # run multiple tasks one after the other, stopping after first failure
+</code></pre>
+
+<h3 id="gradle-verify">Gradle Verify</h3>
+
+<p>The build script has a &ldquo;gradle verify&rdquo; task that will run all of the tests and uses <a href="https://github.com/jacoco/jacoco">Jacoco</a>
+to verify that the code coverage is at a certain threshold. This task is important to run before pushing any code,
+as the <a href="https://travis-ci.com/">Travis CI</a> server we use for continuous integration will run this task in order to pass or fail builds.</p>
+
+<h3 id="gradle-dokka">Gradle Dokka</h3>
+
+<p>The build script has a &ldquo;gradle dokka&rdquo; task that uses <a href="https://github.com/Kotlin/dokka">dokka</a> to generate an html page containing
+all of the javadocs documentation for the back-end application. This html is hosted <a href="https://cspath1.github.io/RT-Contracts/">here</a>.
+Running the task will only generate the html files in a &ldquo;docs&rdquo; folder in the root of the project. These files must then be placed on the
+gh-pages branch. There is a bash script that will automate this process &ldquo;./publish-api-docs.sh&rdquo;. This script first requires you to run
+&ldquo;gradle dokka&rdquo; to generate the html, then it will handle the rest. <strong>NOTE:</strong> This will only work if the project was cloned via ssh <strong>NOT</strong>
+https</p>
 
 
 <footer class=" footline" >
@@ -429,8 +479,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -447,60 +495,13 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
                         
-            
-            
-                
                     
                 
                 
 
                     
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
                     
                     
 
@@ -550,6 +551,60 @@
 
                     
                     
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
                     
 
                     
@@ -582,8 +637,10 @@
 
 
         
+            <a class="nav nav-prev" href="/YCP-Radio-Telescope/back-end/workflows/git/" title="Git"> <i class="fas fa-chevron-left"></i></a>
         
-            <a class="nav nav-next" href="/YCP-Radio-Telescope/back-end/" title="Back-Ends" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
+        
+            <a class="nav nav-next" href="/YCP-Radio-Telescope/back-end/resources/" title="Learning Resources" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
         
     </div>
 

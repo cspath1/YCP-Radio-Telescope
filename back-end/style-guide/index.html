@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/YCP-Radio-Telescope/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/YCP-Radio-Telescope/images/favicon.png" type="image/x-icon" />
-    <title>Categories :: YCP Radio Telescope Knowledge Base</title>
+    <title>Kotlin Style Guide :: YCP Radio Telescope Knowledge Base</title>
 
     
     <link href="/YCP-Radio-Telescope/css/nucleus.css?1540946180" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/YCP-Radio-Telescope/categories/">
+  <body class="" data-url="/YCP-Radio-Telescope/back-end/style-guide/">
     <nav id="sidebar" class="">
 
 
@@ -75,8 +75,8 @@
   
     
     <li data-nav-id="/YCP-Radio-Telescope/back-end/" title="Back-Ends" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="/YCP-Radio-Telescope/back-end/">
@@ -287,8 +287,8 @@
   
     
     <li data-nav-id="/YCP-Radio-Telescope/back-end/style-guide/" title="Kotlin Style Guide" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/YCP-Radio-Telescope/back-end/style-guide/">
@@ -366,7 +366,19 @@
                     
           
           
-            Categories
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/YCP-Radio-Telescope/'>YCP Radio Telescope Knowledge Base</a> > <a href='/YCP-Radio-Telescope/back-end/'>Back-Ends</a> > Kotlin Style Guide
+          
+         
+          
+         
           
            
                   </span>
@@ -374,7 +386,24 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#general-notes">General Notes</a></li>
+<li><a href="#code-style">Code Style</a>
+<ul>
+<li><a href="#1-colons">1. Colons</a></li>
+<li><a href="#2-lambdas">2. Lambdas</a></li>
+<li><a href="#3-class-header-formatting">3. Class Header Formatting</a></li>
+<li><a href="#4-unit-return-type">4. Unit Return Type</a></li>
+<li><a href="#5-functional-programming">5. Functional Programming</a></li>
+<li><a href="#6-javadoc">6. JavaDoc</a></li>
+<li><a href="#7-access-modifiers">7. Access Modifiers</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -386,12 +415,110 @@
         
         <div id="body-inner">
           
-            <h1>Categories</h1>
+            <h1>Kotlin Style Guide</h1>
           
 
         
 
 
+
+
+<h2 id="general-notes">General Notes</h2>
+
+<p>Kotlin has no <code>new</code> operator; to create an instance of a class, you simply call the constructor as
+a normal function, e.g.</p>
+
+<pre><code class="language-kotlin">val userFactory = BaseUserFactory(userRepo)
+</code></pre>
+
+<p>Kotlin has a useful class definition keyword, the <code>data</code> keyword. Classes defined with the <code>data</code>
+keywork implicitly have useful helper methods like <code>equals()</code>,
+<code>hashCode()</code>, and <code>toString()</code> and <code>copy()</code>.
+The <code>copy()</code> function provides the ability to very easily create a copy of a data class
+while optionally changing the value for any of the properties in the copy. Consider the
+following example:</p>
+
+<pre><code class="language-kotlin">data class User(val username: String, val email: String, val password: String)
+val johnSmith = User(username = &quot;jsmith&quot;, email = &quot;jsmith@gmail.com&quot;, password=&quot;password&quot;)
+val johnSmithButSafePassword - johnSmith.copy(password = &quot;Iw24~dkE@4+&quot;)
+val johnSmithsTwinSteve = johnSmith.copy(username = &quot;ssmith&quot;, email = &quot;ssmith@gmail.com&quot;)
+</code></pre>
+
+<h2 id="code-style">Code Style</h2>
+
+<h3 id="1-colons">1. Colons</h3>
+
+<p>There is a space before colon where colon separates type and supertype or interface and there&rsquo;s no
+space where colon separates instance and type:</p>
+
+<pre><code class="language-kotlin">interface Foo&lt;out T : Any&gt; : Bar {
+    fun foo(a: Int): T
+}
+</code></pre>
+
+<h3 id="2-lambdas">2. Lambdas</h3>
+
+<p>In lambda expressions, spaces should be used around the curly braces, as well as around the arrow
+which separates the parameters from the body. Whenever possible, a lambda should be passed outside
+of parentheses.</p>
+
+<pre><code class="language-kotlin">list.filter { it &gt; 10 }.map { element -&gt; element * 2 }
+</code></pre>
+
+<p>In lambdas which are short and not nested, it&rsquo;s recommended to use the it convention instead of
+declaring the parameter explicitly. In nested lambdas with parameters, parameters should be always
+declared explicitly.</p>
+
+<h3 id="3-class-header-formatting">3. Class Header Formatting</h3>
+
+<p>Classes with a few arguments can be written in a single line:</p>
+
+<pre><code class="language-kotlin">class Person(firstName: String, lastName: String)
+</code></pre>
+
+<p>Classes with longer headers should be formatted so that each primary constructor argument is in a
+separate line with indentation. Also, the closing parenthesis should be on a new line. If we use
+inheritance, then the superclass constructor call or list of implemented interfaces should be located
+on the same line as the parenthesis:</p>
+
+<pre><code class="language-kotlin">class Person(
+    id: Int,
+    firstName: String,
+    lastName: String,
+    user: User
+) : Human(id, name) {
+    // ...
+}
+</code></pre>
+
+<h3 id="4-unit-return-type">4. Unit Return Type</h3>
+
+<p>Unit  is essentially Kotlin&rsquo;s version of <code>void</code>. If a method or function returns <code>Unit</code>, the return
+type can be omitted.</p>
+
+<pre><code class="language-kotlin">fun foo() { // &quot;: Unit&quot; is omitted here
+    ...
+}
+</code></pre>
+
+<h3 id="5-functional-programming">5. Functional Programming</h3>
+
+<p>When working with iterables, you should prefer functional programming paradigms over traditional
+loops or iterators; Kotlin provides methods like <code>map{}, each{}, find{}, findAll{}, every{}, collect{}, 
+inject{}</code>, and more on any class which implements the <code>Iterable</code> interface.</p>
+
+<h3 id="6-javadoc">6. JavaDoc</h3>
+
+<p>All public API methods should be fully documented with JavaDoc comments; these will be turned into a
+static HTML API documentation website by a Gradle task during build in order to provide an up-to-date
+API reference. JavaDoc comments for private methods is recommended in most cases, but optional
+(since it will not be included in the API doc; its would only be for developer benefit).</p>
+
+<h3 id="7-access-modifiers">7. Access Modifiers</h3>
+
+<p>In Kotlin, everything is <code>public</code> by default; an explicit access modifier should only be used when
+it is something other than <code>public</code>. You should use the most restrictive access modifier that
+makes sense (i.e. things that <em>can</em> be <code>private</code> or <code>protected</code> <em>should</em> be).</p>
 
 
 <footer class=" footline" >
@@ -429,8 +556,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -447,60 +572,13 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
                         
-            
-            
-                
                     
                 
                 
 
                     
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
                     
                     
 
@@ -550,6 +628,40 @@
 
                     
                     
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                     
 
                     
@@ -572,6 +684,23 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -582,8 +711,10 @@
 
 
         
+            <a class="nav nav-prev" href="/YCP-Radio-Telescope/back-end/resources/" title="Learning Resources"> <i class="fas fa-chevron-left"></i></a>
         
-            <a class="nav nav-next" href="/YCP-Radio-Telescope/back-end/" title="Back-Ends" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
+        
+            <a class="nav nav-next" href="/YCP-Radio-Telescope/back-end/environment/" title="Development Environment" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
         
     </div>
 
