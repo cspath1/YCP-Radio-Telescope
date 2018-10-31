@@ -7,6 +7,10 @@
   </url>
   
   <url>
+    <loc>/YCP-Radio-Telescope/back-end/</loc>
+  </url>
+  
+  <url>
     <loc>/YCP-Radio-Telescope/back-end/design-patterns/</loc>
   </url>
   
@@ -24,11 +28,6 @@
   
   <url>
     <loc>/YCP-Radio-Telescope/back-end/resources/</loc>
-  </url>
-  
-  <url>
-    <loc>/YCP-Radio-Telescope/back-end/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
